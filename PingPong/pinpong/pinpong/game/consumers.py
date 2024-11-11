@@ -151,6 +151,7 @@ class PingPongConsumer(AsyncWebsocketConsumer):
             'pad_num': pad_num
         }))
         if len(connected_players[self.room_group_name]) == 2:
+            print("In start", flush=True)
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
@@ -160,6 +161,7 @@ class PingPongConsumer(AsyncWebsocketConsumer):
                 }
         )
         else:
+            print("IN waiting", flush=True)
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
@@ -189,6 +191,7 @@ class PingPongConsumer(AsyncWebsocketConsumer):
         
     async def receive(self, text_data):
         data = json.loads(text_data)
+        print("Data is ", data.get("type"))
         if data.get('type') == 'move':
             move = data.get('move')
             padd = data.get('pad_num')

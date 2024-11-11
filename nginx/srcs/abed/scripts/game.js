@@ -123,11 +123,11 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
 		socket.onopen = function() {
 			console.log('WebSocket connection established.');
-			socket.send(JSON.stringify({
-				"type": "START",
-				"message": ""
-			}));
 		};
+		socket.close = function(){
+			console.log("in End")
+			
+		}
 		socket.onmessage = function(event) {
 			const data = JSON.parse(event.data);
 			console.log("Event is ", data.event);

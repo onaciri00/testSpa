@@ -1,0 +1,86 @@
+body{
+    background: linear-gradient(to right, red,blue green);
+    font-family: 'poppins',sans-serif;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form{
+    text-align: center;
+    width: 300px;
+    /* margin:20vh 0 auto; */
+    padding: 20px;
+    /* background-color: whitesmoke; */
+    background: rgb(2,0,36);
+    background: linear-gradient(274deg, rgba(2,0,36,1) 0%, rgba(121,9,9,1) 0%, rgba(0,212,255,1) 100%);
+    border-radius: 50px;
+    font-size: 12px;
+    border: 2px solid black;
+}
+
+#form h1{
+    color: black;
+    text-align: center;
+}
+
+#form button{
+    padding: 20px;
+    margin-top: 10px;
+    width: 100%;
+    color: black;
+    background: rgb(2,0,36);
+    background: linear-gradient(97deg, rgba(2,0,36,1) 0%, rgba(121,9,9,1) 0%, rgba(0,212,255,1) 100%); 
+    border: 0cqmax;
+    border-color: black;
+    border-radius: 50px;
+}
+
+.input-control input{
+    border: 2px solid black;
+    border-radius: 50px;
+    display: block;
+    font-size: 8px;
+    padding: 10px;
+    width: 90%;
+}
+
+.input-control input:focus
+{
+    outline: 0;
+}
+
+.input-control.success input{
+    border-color: green;
+}
+
+.input-control.error input{
+    border-color: red;
+}
+
+.input-control .error{
+    color: red;
+    margin-top: 10px;
+    font-size: 16px;
+    height: 25px;
+}
+
+.submit input {
+    border: 1px solid #000000;
+    border-radius: 50px;
+    display: block;
+    padding: 10px;
+    width: 90%;
+    color: white;
+    background: #4c1983;
+    margin: auto;
+    cursor: pointer;
+}
+
+.submit input:hover {
+    background-color: #7221c9;
+}
