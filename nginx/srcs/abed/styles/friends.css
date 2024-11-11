@@ -1,0 +1,194 @@
+@media (min-width: 0px) and (max-width: 575px) {
+    #friends-part {
+        display: flex;
+        justify-content: space-evenly !important;
+        width: 100% !important;
+    }
+    #nav-bar {
+        width: 100%;
+        margin: 0 !important;
+    }
+    #profile-img {
+        display: none;
+    }
+    #icon {
+        display: none !important;
+    }
+    #nav-bar .btn {
+        font-size: 15px !important;
+    }
+}
+
+#friends-part {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: calc(100% - 215px);
+    min-width: calc(100% - 16.66666667%);
+}
+
+#my-friends, #requests, #suggestions {
+    overflow-y: auto;
+    height: calc(100vh - 50px - 20px); /* 50px height of nav-bar 20px margin-bottom of nav-bar */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+#nav-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(96 102 125);
+    gap: 3%;
+    height: 50px;
+}
+
+#nav-bar .btn {
+    color: white;
+    font-size: 20px;
+    width: fit-content !important;
+}
+
+#nav-bar .btn:not(.styled-nav-btn):hover{
+    background-color: #42424294;
+}
+
+#friends-part > h2 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 50px;
+}
+
+.my-friend-card, .friend-suggestion-card, .friend-requests-card {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(180deg, rgba(2, 0, 36, 0.5) 0%, rgb(21 21 75 / 50%) 35%, rgb(0 143 171 / 30%) 100%);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    /* border: solid 1px #000000; */
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.friend-header, .frd-sug-header, .frd-req-header {
+    height: 30%;
+    border-bottom: 1px solid #0dcaf01f;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.friend-img, .frd-sug-img, .frd-req-img {
+    position: relative;
+    width:64px;
+    height: 64px;
+    border-radius: 50%;
+    background-position: center;
+    border: 2px white solid;
+    /* background-image: url(../images/me.jpg); */
+    background-size: cover;
+}
+
+.frd-sug-img i {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    /* color: red;
+    filter: drop-shadow(0 0 1px red); */
+}
+
+.friend-infos, .frd-sug-infos, .frd-req-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top: 8px;
+}
+
+.friend-infos h4, .frd-sug-infos h4, .frd-req-infos h4 {
+    font-size: 20px;
+}
+.friend-infos p, .frd-sug-infos p, .frd-req-infos p {
+    position: relative;
+    bottom: 7px;
+    opacity: 0.6;
+}
+
+.friend-statistics, .frd-sug-statistics, .frd-req-statistics {
+    height: 50%;
+    border-bottom: 1px solid #0dcaf01f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
+}
+
+.friend-statistics span, .frd-sug-statistics span, .frd-req-statistics span {
+    color: gray;
+    font-size: 20px;
+}
+
+.friend-statistics h4, .frd-sug-statistics h4, .frd-req-statistics h4 {
+    color: white;
+    font-size: 20px;
+}
+
+.unfriend {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.unfriend .btn, .refuse .btn, .delete .btn {
+    background-color: #dc3545b0;
+    box-shadow: 0 0 10px #b42c3ab0;
+    color: whitesmoke;
+}
+
+.accept .btn, .add .btn {
+    background-color: #35dc7bb0;
+    box-shadow: 0 0 10px #29ac60b0;
+    color: whitesmoke;
+}
+
+#requests {
+    display: none;
+}
+
+#suggestions {
+    display: none;
+}
+
+.styled-nav-btn {
+    background-color: #391363 !important;
+    box-shadow: 0 0 10px #391363 !important;
+}
+
+/* suggestion part */
+
+.ac-ref, .add-del {
+    display: flex;
+    margin: auto;
+    gap: 20px;
+}
+
+.wins, .loses, .score {
+    display: flex;
+    gap: 60px;
+}
+
+.wins .pts {
+    position: relative;
+    left: 1px;
+}
+
+.value {
+    opacity: 0.5;
+}

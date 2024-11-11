@@ -1,0 +1,7 @@
+django==4.2.10
+djangorestframework
+psycopg2-binary==2.9.9
+channels_redis
+requests
+daphne
+Pillow

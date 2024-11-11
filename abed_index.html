@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid" id="parent">
+        <div class="row">
+
+                <!--First colomn-->
+            <div class="col-12 col-md-12 col-lg-6" id="one">
+                <h1 class="mb-3">Let's play <i class="fa-solid fa-table-tennis-paddle-ball icon"></i></h1> <!-- with logo in right -->
+                <div class="d-grid gap-2 mb-4">
+                    <button id="login-button" class="btn btn-secondary btn-lg intra">Log in with 42</button>
+                </div>
+                <hr>
+                <p>Username:</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text input-group-left"><i class="fa-regular fa-user"></i></span>
+                    <input type="text" class="form-control form-control-lg" placeholder="Username" id="un">
+                </div>
+                <p>Password:</p>
+                <div class="input-group mb-4">
+                    <span class="input-group-text input-group-left"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" id="psw">
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success btn-lg mb-3 login">Log in</button>
+                </div>
+                <p id="no-account">Don't have an account? <a id="signup" href="#">Sign up</a></p>
+            </div>
+
+                    <!--Second colomn-->
+            <div class="col-12 col-md-12 col-lg-6"  id="two">
+                <img src="login-picture.png" alt="ping-pong image" id="image" class="img-fluid">
+            </div>
+
+                    <!--third colomn-->
+            <div class="col-lg-6"  id="three">
+                <h1 class="mb-3" >join us! <i class="fa-regular fa-hand" id="hand"></i></h1> <!-- with logo in right -->
+                <div class="d-grid gap-2 mb-4">
+                    <button class="btn btn-secondary btn-lg intra">Sign up with 42</button>
+                </div>
+                <hr>
+                <p>Email:</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text input-group-left"><i class="fa-regular fa-envelope"></i></i></span>
+                    <input type="email" class="form-control form-control-lg" placeholder="Email" id="email">
+                </div>
+                <p>Username:</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text input-group-left"><i class="fa-regular fa-user"></i></span>
+                    <input type="text" class="form-control form-control-lg" placeholder="Username" id="uname">
+                </div>
+                <p>Password:</p>
+                <div class="input-group mb-4">
+                    <span class="input-group-text input-group-left"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" id="psw">
+                </div>
+                <p>Retype password:</p>
+                <div class="input-group mb-4">
+                    <span class="input-group-text input-group-left"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" id="psw">
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success btn-lg mb-3 login">Sign up</button>
+                </div>
+                <p id="no-account">Already have an accout? <a id="signin" href="#">Log in</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // fetch('/csrf_token/')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         document.getElementById('csrf_token').value = data.csrfToken;
+        //     });
+
+        document.getElementById('login-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '/oauth/authorize';  // become localhost:80/oauth/authorize nginx will forward to api endpoint
+        });
+    </script>
+</body>
+</html>

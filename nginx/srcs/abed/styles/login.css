@@ -1,0 +1,135 @@
+#one h1, #three h1 {
+    text-align: center;
+    font-family: 'Games', sans-serif;
+}
+
+.icon {
+    color: rgb(162, 129, 184);
+    font-size: 50px;
+}
+
+#un, #psw, #uname, #email, #psswd1, #psswd2, #fname, #lname {
+    color: white !important;
+    background-color: rgb(35, 21, 70) !important;
+    border: none;
+}
+
+.input-groupe {
+    background-color: rgb(35, 21, 70) !important;
+}
+
+::placeholder {
+    color: rgb(177, 177, 177) !important;
+}
+
+.input-group-left {
+    background-color: rgb(51, 30, 100);
+    color: whitesmoke;
+}
+
+body {
+    background-color: rgb(0, 21, 52);
+    /* background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(2,0,36,1) 30%, rgba(119,0,255,1) 50%, rgba(29,0,39,1) 70%, rgba(9,9,121,1) 100%); */
+    color: white;
+    /* font-family: "Arsenal SC", sans-serif;
+    font-weight: bold; */
+    height: 100vh;
+    /* overflow: hidden; */
+}
+
+.login-btn {
+    background: #0197d0 !important;
+    font-family: 'Games', sans-serif;
+}
+
+.intra {
+    background-color: grey;
+    font-family: 'Games', sans-serif;
+}
+
+.login-btn:hover, .intra:hover {
+    color: white;
+}
+
+.login-btn:hover {
+    background: #0197d0;
+    box-shadow: 0px 0px 10px #0197d0;
+}
+
+a {
+    color: aqua;
+}
+
+#one {
+    box-shadow: 0px 0px 20px black;
+    padding: 140px 60px;
+}
+
+#two {
+    box-shadow: 0px 0px 20px rgb(39, 37, 37);
+    /* padding: 40px; */
+}
+
+#image {
+    height: 100%;
+}
+
+#login-parent {
+    display: none;
+    /* margin: 5% auto 0px auto; */
+    margin: 3% auto;
+    width: 70%;
+    height: 60%;
+    /* height: 100%; */
+}
+
+#no-account {
+    text-align: center;
+    font-family: 'popins';
+    font-weight: lighter;
+}
+
+#three {
+    display: none;
+    box-shadow: 0px 0px 20px rgb(39, 37, 37);
+    padding: 60px;
+}
+
+#hand {
+    /* 67 42 */
+    transform: rotate(42deg);
+    animation: fr 1s infinite;
+}
+
+@keyframes fr {
+    0%{
+        transform: rotate(42deg);  
+    }
+    50%{
+        transform: rotate(67deg);  
+
+    }
+    100%{
+        transform: rotate(42deg);  
+
+    }   
+}
+
+@media (max-width: 768px) {
+    #two {
+        display: none;
+    }
+    #login-parent {
+        width: 90%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    /* Your CSS styles for tablets */
+    #two {
+      display: none; /* Example adjustment for readability on tablets */
+    }
+    #login-parent {
+        width: 90%;
+    }
+}

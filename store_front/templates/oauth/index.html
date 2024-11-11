@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #afacac; /* Light grey background */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;  /*Center vertically */
+            height: 80vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Optional: Set a preferred font */
+        }
+        
+        form {
+            background-color: rgb(165, 224, 231);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            max-width: 300px; /* Limit form width */
+            width: 100%; /* Full width within max-width */
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px); /* Adjust width for padding */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        
+        button {
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #1c311d; /* Darker green on hover */
+        }
+        
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <form action="">
+        <label for="username"> Username </label>
+        <input type="text" id="username">
+        <br>
+        <label for="PassWord"> PassWord </label>
+        <input type="password" id="PassWord">
+        <!-- <button><a href="{%url 'oauth_authorize' %}">Log in with <b>intra 42</b></a></button> -->
+    </form>
+    <br>
+    <br>
+</body>
+</html>
+
+

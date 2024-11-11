@@ -1,0 +1,302 @@
+@media (min-width: 0px) and (max-width: 575px) {
+    #chat-page {
+        width: 100%;
+    }
+    #chat-part {
+        margin: 20px 0 0 0 !important;
+        width: 100% !important;
+        min-width: 320px !important;
+    }
+    #players {
+        display: none;
+    }
+    #messages {
+        width: 100% !important;
+    }
+    #insert-msg {
+        width: 90% !important;
+    }
+    #secondd {
+        position: relative;
+        width: 100% !important;
+    }
+    .dropdown {
+        display: block !important;
+        position: absolute;
+        right: 0;
+        margin-right: 20px;
+    }
+    .show {
+        background-color: rgb(0, 12, 45, 0.90) !important;
+    }
+    .dropdown .btn {
+        background-color: rgb(0, 12, 45, 0.90) !important;
+        border: white 1px solid;
+    }
+    .dropdown .dropdown-toggle {
+        border-color: white !important;
+        box-shadow: 0 0 2px #02ffff !important;
+    }
+    #chats2 {
+        height: 200px !important;
+    }
+    .dropdown-toggle::after {
+        display: none;
+    }
+    #msgs {
+        height: 82%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    #chat-part {
+        /* margin-top: 10% !important; */
+        width: 80% !important;
+    }
+    #messages {
+        width: 100% !important;
+    }
+    #insert-msg {
+        width: 90% !important;
+    }
+    #secondd {
+        position: relative;
+        width: 100% !important;
+    }
+    #players {
+        left: 0 !important;
+    }
+    #firstt {
+        width: 110% !important;
+    }
+    #chats {
+        width: 110% !important;
+    }
+}
+
+.dropdown {
+    display: none;
+}
+
+#chat-part {
+    box-shadow: 0 0 10px #4f868a;
+    display: none;
+    width: 80%;
+    max-width: 1200px;
+    min-width: 480px;
+    height: 70vh;
+    min-height: 385px;
+    border-radius: 10px;
+    margin: auto;
+    background: rgb(37,46,71);
+    background: linear-gradient(180deg, rgba(37,46,71,1) 0%, rgba(9,24,66,1) 50%, rgba(0,17,62,1) 100%);
+    background-image: url(../images/1.jpeg);
+    background-size: cover;
+}
+
+#chat-part h2 {
+    color: whitesmoke;
+    text-align: center;
+}
+
+#players {
+    position: relative;
+    left: 2%;
+}
+
+#players, #chat-page{
+    /* border: 2px solid rgb(109 145 145); */
+    height: 72vh;
+    border-radius: 5px;
+}
+
+#chat-page {
+    border-left: none;
+}
+
+.input-group #something {
+    background-color: rgb(0, 12, 45);
+    border-color: white;
+    color: white;
+}
+
+.input-group #something::placeholder {
+    color: rgb(172, 172, 172) !important;
+}
+
+#secondd, #firstt {
+    background-color: rgb(0, 12, 45, 0.90);
+    box-shadow: 0 0 10px #0e1c1f;
+    border-radius: 10px;
+    width: 90%;
+    height: 12%;
+    margin: 15px auto;
+}
+#firstt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+}
+
+#secondd {
+    padding-left: 2%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#user-status {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+#user-status h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#user-status p {
+    font-size: 13px;
+    color: white;
+    opacity: 50%;
+    position: relative;
+    bottom: 5px;
+}
+
+#secondd #chat-pic {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid aqua;
+    background-size: cover;
+}
+
+
+#insert-msg {
+    width: 85%;
+    margin: auto;
+    position: relative;
+    bottom: 11%;
+}
+
+#insert-msg i {
+    font-size: 20px;
+    color: white;
+}
+
+#send-icon {
+    width: 50px;
+    height: 50px;
+    border: 2px solid aqua;
+    border-radius: 50%;
+    margin: 10px 0 0 85%;
+}
+
+#input-group-chat {
+    height: 50px !important;
+}
+
+#insert-msg .btn {
+    background-color: whitesmoke;
+    box-shadow: none;
+    background-color: rgb(0, 12, 45, 0.80);
+}
+
+#input-group-text-chat {
+    padding: 0;
+    background-color: rgb(0, 12, 45, 0.80);
+}
+
+#chats, #chats2 {
+    background-color: rgb(0, 12, 45, 0.90);
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0e1c1f;
+    width: 100%;
+    height: 80%;
+    margin: auto;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 12, 45, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: gray;
+    
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(151, 151, 151, 0.6);
+}
+
+#chats div, #chats2 div {
+    margin-top: 15px !important;
+    width: 90%;
+    height: 50px;
+    box-shadow: 0 0 5px #0e2c2e;
+    border-radius: 5px;
+    margin: auto;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+#chats div:not(.selected-user):hover, #chats2 div:not(.selected-user):hover {
+    background-color: rgba(21, 27, 80, 0.5);
+}
+
+.selected-user {
+    background-color: rgb(4, 6, 32);
+    color: aquamarine;
+}
+
+#messages {
+    background-color: rgba(0, 12, 45, 0.90);
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0e1c1f;
+    width: 90%;
+    height: 78%;
+    margin: auto;
+}
+
+#msgs {
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    max-height: 436px;
+    overflow-y: auto;
+}
+
+#msgs .my-msg, #msgs .friend-msg {
+    margin-top: 12px;
+    margin-right: 10px;
+    width: fit-content;
+    max-width: 55%;
+    height: fit-content;
+    padding: 10px 20px;
+    border-radius: 34px;
+    background-color: #252586;
+    align-self: flex-end;
+    word-wrap: break-word;
+}
+
+#msgs {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 8px;
+}
+
+#msgs .friend-msg { /*differ friend messages from my messages */
+    background-color: #595959a8;
+    align-self: flex-start; /* flex attribute for child.*/
+}

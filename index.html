@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #afacac; /* Light grey background */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;  /*Center vertically */
+            height: 80vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Optional: Set a preferred font */
+        }
+        
+        form {
+            background-color: rgb(165, 224, 231);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            max-width: 300px; /* Limit form width */
+            width: 100%; /* Full width within max-width */
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px); /* Adjust width for padding */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        
+        button {
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #1c311d; /* Darker green on hover */
+        }
+        
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <h1><strong>-></strong></h1>
+    <br>
+    <form action="/register.html/" method="get">
+        <button type="submit">Register</button>
+    </form>
+    <br>
+    <form action="/login/" method="post">
+        <label for="username"> Username </label>
+        <input type="text" id="username">
+        <br>
+        <label for="PassWord"> PassWord </label>
+        <input type="password" id="PassWord">
+        <br>
+        <input type="hidden" id="csrf_token" name="csrfmiddlewaretoken">
+        <button type="submit">Login</button>
+    </form>
+    <form id="login-button" >
+        <button type="submit">Log in with <b>intra 42</b></button>
+    </form>
+    <br>
+    <br>
+
+    <script>
+        fetch('/csrf_token/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('csrf_token').value = data.csrfToken;
+            });
+
+        document.getElementById('login-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '/oauth/authorize';  // become localhost:80/oauth/authorize nginx will forward to api endpoint
+        });
+    </script>
+    <!-- // Simple Terms
+    // Find the button: The script looks for the button with the ID login-button.
+    // Wait for a click: It sets up a listener to wait for the user to click the button.
+    // Stop the default action: When the button is clicked, the script prevents the form from submitting in the usual way.
+    // Redirect the user: Instead of submitting the form, the script redirects the user to the /oauth/authorize URL, starting the login process --> -->
+</body>
+</html> 
+
+<!-- --------------------------------------------------------------------------------- -->

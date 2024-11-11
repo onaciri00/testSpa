@@ -1,0 +1,399 @@
+:root {
+    --uInfo_height: 20vh;
+}
+
+@media (min-width: 0px) and (max-width: 575px) {
+    :root {
+        --uInfo_height: 40vh;
+    }
+    #profile-part {
+        width: 100% !important;
+        height: 920px !important;
+        min-height: 1000px !important;
+    }
+    #profile-container {
+        height: 900px !important;
+        width: 95% !important;
+    }
+    #profile-part #statistics {
+        margin-top: 20px;
+        height: 488px !important;
+    }
+    #match-history {
+        height: 100% !important;
+    }
+    #second {
+        border: none !important;
+    }
+    /* #profile-part {
+        width: 100vw !important;
+        margin-top: 100px !important;
+        height: 640px !important;
+    } */
+    /* #profile-container {
+        height: 768px !important;
+        width: 100vw !important;
+    }
+    #profile-part #statistics {
+        margin-top: 20px;
+        height: 410px !important;
+    } */
+    /* #match-history {
+        height: 400px !important;
+    } */
+    #user-picture {
+        margin-top: 10px !important;
+        bottom: 0 !important;
+    }
+    #first {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border: none !important;
+    }
+    #user-info {
+        display: flex;
+        flex-direction: column;
+    }
+    #games-container {
+        height: 100% !important;
+    }
+    .game-record {
+        width: 98% !important;
+        gap: 0 !important;
+    }
+    #match {
+        gap: 10px !important;
+    }
+    .game-record h2 {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    :root {
+        --uInfo_height: 32vh;
+    }
+    #second {
+        border: none !important;
+    }
+    #profile-part {
+        width: 80vw !important;
+        height: 920px !important;
+    }
+    #profile-container {
+        height: 900px !important;
+        width: 100% !important;
+    }
+    #profile-part #statistics {
+        margin-top: 20px;
+        height: 488px !important;
+    }
+    #match-history {
+        height: 100% !important;
+    }
+    /* #profile-part {
+        width: 80vw !important;
+        height: 640px !important;
+    } */
+    #user-picture {
+        margin-top: 10px !important;
+        bottom: 0 !important;
+    }
+    #first {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border: none !important;
+    }
+    #user-info {
+        display: flex;
+        flex-direction: column;
+    }
+    #games-container {
+        height: 100% !important;
+    }
+    /* #profile-container {
+        height: 768px !important;
+        width: 100% !important;
+    } */
+    /* #profile-part #statistics {
+        margin-top: 20px;
+        height: 410px !important;
+    } */
+    .game-record {
+        width: 98% !important;
+        gap: 0 !important;
+    }
+    #match {
+        gap: 10px !important;
+    }
+    .game-record h2 {
+        font-size: 16px;
+    }
+    /* #match-history {
+        height: 400px !important;
+    } */
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    :root {
+        --uInfo_height: 20vh;
+    }
+    #second {
+        border: none !important;
+    }
+    #profile-part {
+        width: 80vw !important;
+        height: 920px !important;
+    }
+    #profile-container {
+        height: 900px !important;
+        width: 100% !important;
+    }
+    #profile-part #statistics {
+        margin-top: 20px;
+        height: 488px !important;
+    }
+    #match-history {
+        height: 100% !important;
+    }
+    #user-picture {
+        margin-top: 10px !important;
+        bottom: 0 !important;
+    }
+    #first {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border: none !important;
+    }
+    #user-info {
+        display: flex;
+        flex-direction: column;
+    }
+    #games-container {
+        height: 100% !important;
+    }
+    .game-record {
+        width: 98% !important;
+        gap: 0 !important;
+    }
+    #match {
+        gap: 10px !important;
+    }
+    .game-record h2 {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    #profile-container {
+        min-width: 83vw;
+    }
+    #user-picture {
+        width: 96px !important;
+        height: 96px !important;
+    }
+}
+
+.par {
+    width: 90% !important;
+}
+.progress {
+    width: 90% !important;
+}
+
+#profile-part {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 75vw;
+    height: 100vh;
+    margin: auto;
+}
+
+#profile-container {
+    background-color: #7b45a645;
+    box-shadow: 0 0 5px #4fb0c6;
+    border-radius: 20px;
+    width: 75vw;
+    /* max-height: 90vh; */
+    background-image: url(../images/2.jpeg);
+    background-size: cover;
+}
+
+#statistics h1 {
+    text-align: center;
+    color: rgb(194, 223, 213);
+}
+
+#user-info {
+    border-bottom: 2px solid white;
+}
+
+#match-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#user-info h1, #statistics h1 {
+    height: 35px;
+    color: white !important;
+    font-size: 30px;
+    width: fit-content;
+    margin: 0 auto;
+    border-bottom: 1px solid white;
+}
+
+#profile-part #statistics {
+    min-height: 360px;
+    height: calc(100vh - var(--uInfo_height) - 27vh);
+}
+
+#games-container {
+    overflow-y: auto;
+    min-height: 300px;
+    height: calc(100vh - var(--uInfo_height) - 27vh - 35px - 2px - 20px);
+    width: 100%;
+}
+
+.game-record {
+    height: 100px;
+    width: 90%;
+    margin: auto;
+    border: 1px solid aqua;
+    border-radius: 5px;
+    box-shadow: 0 0 2px aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 25px;
+    background-color: #051f35c2;
+    margin-bottom: 20px;
+}
+
+#me, #enemy {
+    height: 64px;
+    width: 64px;
+    border: 2px solid aqua;
+
+}
+
+#me {
+    background-image: url(../images/me.jpg);
+    background-size: cover;
+}
+
+#enemy {
+    background-image: url(../images/1.jpeg);
+    background-size: cover;
+}
+
+
+#vs i {
+    font-size: 30px;
+}
+
+#match {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+#user-info h2 {
+    color: aquamarine !important;
+    /* text-align: center; */
+    font-size: 20px !important;
+    font-weight: bold;
+}
+
+#user-info h4 {
+    /* color: rgb(194, 223, 213) !important;
+    text-align: center; */
+    font-size: 13px !important;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+#user-picture {
+    margin: auto;
+    position: relative;
+    bottom: 17%;
+    width: 128px;
+    height: 128px;
+    background-position: center;
+    /* background-image: url(../images/me.jpg); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px #448ca2;
+    border: solid #9cfcf5 2px;
+}
+
+#us {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 5%;
+}
+
+#my-picture {
+    height: 128px;
+}
+
+/* #user-picture > i {
+    font-size: 64px;
+    position: absolute;
+    left: 32px;
+    top: 25px;
+    color: #c6e1dc;
+} */
+
+/* #first-empty {
+    height: 100%;
+} */
+
+.uInfo {
+    color: #c6e1dc;
+}
+
+#first {
+    /* width: 40%; */
+    /* background-color: #4fb0c6; */
+    /* margin: 10px auto; */
+    border-right: 2px solid white;
+}
+
+#second {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    align-items: center;
+    border-right: 2px solid white;
+}
+
+#third {
+    gap: 20%;
+}
+
+.progress {
+    width: 100%;
+}
+
+.progress-bar-animated {
+    background-color: #0a496b;
+}
+
+/* #profile-part > h2 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 50px;
+} */

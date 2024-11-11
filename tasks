@@ -1,0 +1,55 @@
+Diagram
+
+-- > Forward Proxy
+---------------------------------------------------------------------------------
+|               | Client -> Forward Proxy -> External Server |        (internet) |
+|--------------------------------------------------------------------------------||                                                                                
+|    <*-*> Client: A user's web browser within a company network.                ||
+|    <*-*> Forward Proxy: Routes requests to external servers on the internet.   ||
+|    <*-*> External Server: A web server on the internet, like www.facebook.com. ||
+---------------------------------------------------------------------------------
+
+-- > Reverse Proxy
+
+            -> Backend Server 1 (Django App)
+            /
+    Client -> Reverse Proxy (Nginx) -> Backend Server 2 (Django App)
+            \
+            -> Backend Server 3 (Django App)
+
+    <*-*> Client: A user's web browser accessing https://yourapp.com.
+    <*-*> Reverse Proxy (Nginx): Manages and distributes requests to backend servers.
+    <*-*> Backend Servers (Django Apps): Multiple instances of the web application within the local network or data center.
+
+
+- add nginx container.
+
+                        <-- important information -->
+                        <--------------------------->
+                <-- superuser: -> username = ayoub, password : ayoub.123 -->
+                        <--------------------------->
+                        <--------------------------->
+
+- response by json instead of  redirect 
+
+---------------------------------  PLEASE READE ME -------------------------------------------
+ 
+-------------------------------------------------------------------------------------------------
+---------------------------------->       Tasks          <---------------------------------------
+ -----------------------------------------------------------------------------------------------
+|       - push the project in the githup (take idea about branchs).                             |
+|       - update it is so easy .                                                                |
+|       - create updateSerializer (update password also make check validition of the fields).   |
+|       - return profile information .                                                          |
+|       - create a view for profile (get) and also for a update user (post) then save .         |
+|       -  
+ -----------------------------------------------------------------------------------------------
+
+<!-- 1.1- most understand what happens by details of details of details specialy (csrf)
+
+1.2-  fahm dakci mzyan each word 3lx dart
+
+q :
+
+1- ask about form of django and of front -->
+

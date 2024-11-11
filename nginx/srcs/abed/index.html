@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/summer-surfing-serif" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/xo.css">
+    <link rel="stylesheet" href="styles/friends.css">
+    <link rel="stylesheet" href="styles/rank.css">
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/chat.css">
+    <link rel="stylesheet" href="styles/setting.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/notification.css">
+    <link rel="stylesheet" href="styles/game.css">
+</head>
+<body>
+    <!-- toast to apply later when someone is loggedin -->
+    <div id="freeze"></div>
+    <div id="error" class="error_style" style="display: none;">
+        <h1>Oops Somthing went wrong!</h1>
+        <h3>404 Not Found</h3>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="pingpong-game">
+                <div id="game-container1">
+                    <h1 class="pongScore align" id="player1Score">0</h1>
+                    <h1 class="pongScore align"  id="player2Score">0</h1>
+                    <canvas id ="canvas" class="game"></canvas>
+                </div>
+                </div>
+                <div id="main_counter">
+                    <div class="counter">
+                        <div class="nums">
+                            <span class="in">3</span>
+                            <span>2</span>
+                            <span>1</span>
+                            <span>0</span>
+                        </div>
+                        <h4>Get Ready</h4>
+                    </div>
+                </div>
+                <div id="game_over">
+                    <h1 id="result1">You Win</h1>
+                </div>
+            </div>
+            <!-- login part -->
+            <div class="col-12" id="login-parent">
+                <div class="col-12 col-md-12 col-lg-6" id="one">
+                    <form id="login-form">
+                        <input type="hidden" class="csrf_token" name="csrfmiddlewaretoken">
+                        <h1 class="mb-3">Let's play <i class="fa-solid fa-table-tennis-paddle-ball icon"></i></h1> <!-- with logo in right -->
+                        <div class="d-grid gap-2 mb-4">
+                            <button class="btn btn-secondary btn-lg intra">Log in with 42</button>
+                        </div>
+                        <hr>
+                        <p>Username:</p>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text input-group-left"><i class="fa-regular fa-user"></i></span>
+                            <input type="text" class="form-control form-control-lg" placeholder="Username" name="username" id="un" required>
+                        </div>
+                        <p>Password:</p>
+                        <div class="input-group mb-4" id="login-password">
+                            <span class="input-group-text input-group-left"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" class="form-control form-control-lg" placeholder="Password" name="password" id="psw" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success btn-lg mb-3 login-btn">Log in</button>
+                        </div>
+                        <p id="no-account">Don't have an account? <a id="signup" href="#">Sign up</a></p>
+                    </form>
+                </div>
+                <div class="col-12 col-md-12 col-lg-6"  id="two">
+                    <img src="images/login-picture.png" alt="ping-pong image" id="image" class="img-fluid">
+                </div>
+                <div class="col-lg-6"  id="three">
+                    <form id="register-form">
+                        <input type="hidden" class="csrf_token" name="csrfmiddlewaretoken">
+                        <h1 class="mb-3" >join us! <i class="fa-regular fa-hand" id="hand"></i></h1> <!-- with logo in right -->
+                        <div class="d-grid gap-2 mb-4">
+                            <button class="btn btn-secondary btn-lg intra">Sign up with 42</button>
+                        </div>
+                        <hr>
+                        <p>Email:</p>
+                        <div class="input-group mb-3" id="email-error">
+                            <span class="input-group-text input-group-left"><i class="fa-regular fa-envelope"></i></i></span>
+                            <input name="email" type="email" class="form-control form-control-lg" placeholder="Email" id="email" required>
+                        </div>
+                        <p>Username:</p>
+                        <div class="input-group mb-3" id="username-error">
+                            <span class="input-group-text input-group-left"><i class="fa-regular fa-user"></i></span>
+                            <input name="username" type="text" class="form-control form-control-lg" placeholder="Username" id="uname" required>
+                        </div>
+                        <p>First Name:</p>
+                        <div class="input-group mb-3" id="first-name">
+                            <span class="input-group-text input-group-left"><i class="fa-regular fa-user"></i></span>
+                            <input name="firstname" type="text" class="form-control form-control-lg" placeholder="First Name" id="fname" required>
+                        </div>
+                        <p>Last Name:</p>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text input-group-left"><i class="fa-regular fa-user"></i></span>
+                            <input name="lastname" type="text" class="form-control form-control-lg" placeholder="Last Name" id="lname" required>
+                        </div>
+                        <p>Password:</p>
+                        <div class="input-group mb-4" id="password-error">
+                            <span class="input-group-text input-group-left"><i class="fa-solid fa-lock"></i></span>
+                            <input name="password1" type="password" class="form-control form-control-lg psw" placeholder="Password" id="psswd1" required>
+                        </div>
+                        <p>Retype password:</p>
+                        <div class="input-group mb-4">
+                            <span class="input-group-text input-group-left"><i class="fa-solid fa-lock"></i></span>
+                            <input name="password2" type="password" class="form-control form-control-lg psw" placeholder="Password" id="psswd2" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg mb-3 login-btn" id="sign-up">Sign up</button>
+                        </div>
+                        <p id="no-account">Already have an accout? <a id="signin" href="#">Log in</a></p>
+                    </form>
+                </div>
+            </div>
+            <!-- nav part -->
+            <div id="full-container" style="display: none;">
+                <div class="col-12 col-md-2" id="nav">
+                    <div class="row" id="icon">
+                        <img src="/images/logo.avif" alt="logo">
+                    </div>
+                    <div class="row navig" id="home">
+                        <button class="btn nav-button"><div class="ll"><i class="fa-solid fa-house"></i> <h3 class="rem d-inline-block" >Home</h3></div></button>
+                    </div>
+                    <div class="row navig" id="profile">
+                        <button class="btn nav-button"><div class="ll"><i class="fa-solid fa-user"></i> <h3 class="rem d-inline-block" >Profile</h3></div></button>
+                    </div>
+                    <div class="row navig" id="friends">
+                        <button class="btn nav-button"><div class="ll"><i class="fa-solid fa-user-group"></i> <h3 class="rem d-inline-block" >Friends</h3></div></button>
+                    </div>
+                    <div class="row navig" id="rank">
+                        <button class="btn nav-button"><div class="ll"><i class="fa-solid fa-ranking-star"></i> <h3 class="rem d-inline-block" >Rank</h3></div></button>
+                    </div>
+                    <div class="row navig" id="chat">
+                        <button class="btn nav-button"><div class="ll"><i class="fa-solid fa-message"></i> <h3 class="rem d-inline-block">Chat</h3></div></button>
+                    </div>
+                    <div class="row navig" id="setting">
+                        <button class="btn nav-button"><div class="ll"><i class="fa-solid fa-gear"></i> <h3 class="rem d-inline-block">Setting</h3></div></button>
+                    </div>
+                    <div class="row" id="logout">
+                        <input type="hidden" class="csrf_token" name="csrfmiddlewaretoken">
+                        <button class="btn nav-button"><div class="ll"><i class="fa-solid fa-arrow-right-from-bracket"></i> <h3 class="rem" style="display: inline-block;">Logout</h3></div></button>
+                    </div>
+                    <!-- <div id="profile-img" style="display: none;">
+                        <i class="fa-solid fa-user"></i>
+                    </div> -->
+                </div>
+                <!-- main part -->
+                <div id="main" style="display: none;" >
+                    <div id="home-navbar">
+                        <div id="search-bar">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" placeholder="Quick search...">
+                        </div>
+                        <div class="search-icons">
+                            <div id="notif">
+                                <div class="btn"><i class="fa-solid fa-bell"></i></div>
+                            </div>
+                            <div id="profile-pict">
+                                <div><i class="fa-solid fa-user"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="design">
+                        <div id="description">
+                            <div id="game-title">
+                                <p>Ping Pong Game</p>
+                            </div>
+                            <div id="speech">
+                                <h3>It's time for ping-pong Party!</h3>
+                            </div>
+                            <div id="play-block">
+                                <button type="button" class="btn btn-primary btn-sm" id="play-button">Play Now </button>
+                                <i class="fa-solid fa-circle-play" id="play-icon"></i>
+                            </div>
+                        </div>
+                        <div id="main-img">
+
+                        </div>
+                    </div>
+                    <div id="games">
+                        <div id="games-cont">
+                            <h1>Our Games</h1>
+                            <div id="games-icons">
+                                <div id="ping-pong">
+                                    <img src="/images/PingPong.webp" alt="Ping Pong image" id="img1">
+                                </div>
+                                <div id="XO">
+                                    <img src="/images/xo.png" alt="XO Game" id="img2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="app" style="display: none;">
+                        <button type="button" class="btn-close" aria-label="Close"></button>
+                    </div>
+                </div>
+                <!-- <div id="online-friends">
+                    <h3>Online</h3>
+                    <div id="online-container">
+
+                    </div>
+                </div> -->
+                <!-- Profile part -->
+                <div class="col-md-10" id="profile-part">
+                    <div id="welcome">
+                        <h1>Welcome Bro!</h1>
+                    </div>
+                    <div class="row" id="profile-container">
+                        <div class="col-12">
+                            <div class="row" id="user-info">
+                                <div class="col-12 col-lg-2 uInfo" id="first">
+                                    <div id="user-picture">
+                                    </div>
+                                    <div id="us">
+                                        <h3 style="align-self: center;">mhassani</h3>
+                                        <h5 style="align-self: center;">2560</h5>
+                                    </div>
+                                    <!-- <i class="fa-solid fa-user"></i> -->
+                                </div>
+                                <div class="col-12 col-lg-6 uInfo" id="second">
+                                    <div class="par" style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
+                                        <h4>Level42</h4>
+                                        <h4>2560/3000</h4>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="par" style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
+                                        <h4>Next level</h4>
+                                        <h4>43</h4>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 uInfo d-flex justify-content-center align-items-center" id="third">
+                                    <h3>wins: 42</h3>
+                                    <h3>loses: 0</h3>
+                                </div>
+                            </div>
+                            <div class="row" id="statistics">
+                                <div class="col-12" id="match-history">
+                                    <h1>Match History</h1>
+                                    <div id="games-container">
+                                        <div class="game-record"> <!-- flex box -->
+                                            <h2 id="win-lost" style="color: #78dc78; text-decoration: underline;">Won</h2>
+                                            <div id="match">
+                                                <div id="me">
+                                                </div>
+                                                <div id="vs">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </div>
+                                                <div id="enemy"></div>
+                                            </div>
+                                            <h2 id="score-pts">+30pts</h2>
+                                        </div>
+                                        <div class="game-record"> <!-- flex box -->
+                                            <h2 id="win-lost" style="color: red; text-decoration: line-through;">Lost</h2>
+                                            <div id="match">
+                                                <div id="me"></div>
+                                                <div id="vs">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </div>
+                                                <div id="enemy"></div>
+                                            </div>
+                                            <h2 id="score-pts">-15pts</h2>
+                                        </div>
+                                        <div class="game-record"> <!-- flex box -->
+                                            <h2 id="win-lost" style="color: #78dc78; text-decoration: underline;">Won</h2>
+                                            <div id="match">
+                                                <div id="me"></div>
+                                                <div id="vs">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </div>
+                                                <div id="enemy"></div>
+                                            </div>
+                                            <h2 id="score-pts">+30pts</h2>
+                                        </div>
+                                        <div class="game-record"> <!-- flex box -->
+                                            <h2 id="win-lost" style="color: #78dc78; text-decoration: underline;">Won</h2>
+                                            <div id="match">
+                                                <div id="me"></div>
+                                                <div id="vs">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </div>
+                                                <div id="enemy"></div>
+                                            </div>
+                                            <h2 id="score-pts">+30pts</h2>
+                                        </div>
+                                        <div class="game-record"> <!-- flex box -->
+                                            <h2 id="win-lost" style="color: #78dc78; text-decoration: underline;">Won</h2>
+                                            <div id="match">
+                                                <div id="me"></div>
+                                                <div id="vs">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </div>
+                                                <div id="enemy"></div>
+                                            </div>
+                                            <h2 id="score-pts">+30pts</h2>
+                                        </div>
+                                        <div class="game-record"> <!-- flex box -->
+                                            <h2 id="win-lost" style="color: #78dc78; text-decoration: underline;">Won</h2>
+                                            <div id="match">
+                                                <div id="me"></div>
+                                                <div id="vs">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </div>
+                                                <div id="enemy"></div>
+                                            </div>
+                                            <h2 id="score-pts">+30pts</h2>
+                                        </div>
+                                        <div class="game-record"> <!-- flex box -->
+                                            <h2 id="win-lost" style="color: #78dc78; text-decoration: underline;">Won</h2>
+                                            <div id="match">
+                                                <div id="me"></div>
+                                                <div id="vs">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </div>
+                                                <div id="enemy"></div>
+                                            </div>
+                                            <h2 id="score-pts">+30pts</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Chat part -->
+                <div class="col-12 col-md-10" id="chat-part">
+                    <div class="row">
+                        <div class="col-4" id="players">
+                            <div id="firstt">
+                                <h2>Messages</h2>
+                            </div>
+                            <div id="chats">
+                                
+                            </div>
+                        </div>
+                        <div class="col-8" id="chat-page">
+                            <div id="secondd">
+                                <div id="chat-pic"></div>
+                                <div id="user-status">
+                                    <h3></h3>
+                                    <p></p>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDark" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-bars"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuDark">
+                                        <div id="chats2">
+                                            
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="messages">
+                                <div id="msgs">
+                                </div>
+                            </div>
+                            <div id="insert-msg">
+                                <div class="input-group" id="input-group-chat">
+                                    <input type="text" autocomplete="off" id="something" class="form-control" placeholder="Type Something...." aria-label="Username" aria-describedby="input-group-right">
+                                    <span class="input-group-text" id="input-group-text-chat"><button type="button" class="btn"><i class="fa-regular fa-paper-plane"></i></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Setting part -->
+                <div class="col-12 col-md-10" id="setting-part">
+                    <div id="setting-nav-bar">
+                        <button class="btn setting-nav-btn">Profile</button>
+                        <button class="btn setting-nav-btn">Login & Security</button>
+                        <button class="btn setting-nav-btn">General</button>
+                    </div>
+                    <div id="profile-setting">
+                        <div id="profile-header">
+                            <div id="first-container">
+                                <div id="setting-pic"></div>
+                                <div id="setting-pic-infos">
+                                    <h5></h5>
+                                    <p></p>
+                                </div>
+                                <!-- <div id="update-message" class="update-message">Profile updated</div> -->
+                            </div>
+                            <form id="update-form" method="post" enctype="multipart/form-data">
+                                <div id="second-container">
+                                    <input name="imageProfile" type="file" id="file-input" style="display: none;" accept="image/*">
+                                    <div>
+                                        <button type="button" class="btn btn-outline-primary" id="change-img">Change Image</button>
+                                    </div>
+                                    <div class="img-err">
+                                        *Please choose image types only.
+                                    </div>
+                                </div>
+                                <div class="separator">
+                                    <p>Account information</p>
+                                    <hr>
+                                </div>
+                                <div class="account-info">
+                                    <div>
+                                        <label for="formControlInput1" class="form-label">First Name</label>
+                                        <input name="firstname" type="text" class="form-control" id="formControlInput1" placeholder="Your first name" required>
+                                    </div>
+                                    <div>
+                                        <label for="formControlInput2" class="form-label">Last Name</label>
+                                        <input name="lastname" type="text" class="form-control" id="formControlInput2" placeholder="Your last name" required>
+                                    </div>
+                                    <div>
+                                        <label for="formControlInput3" class="form-label">Email Adress</label>
+                                        <input name="email" type="email" class="form-control" id="formControlInput3" placeholder="name@example.com" required>
+                                    </div>
+                                    <div id="save-changes">
+                                        <button type="button" class="btn btn-outline-secondary" id="cancel-btn">Cancel</button>
+                                        <button type="submit" class="btn btn-outline-success save-btn">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Alert Parent Div for success update infos-->
+                            <div id="update-alert" style="display: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                                    <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </symbol>
+                                    <symbol id="info-fill" viewBox="0 0 16 16">
+                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                    </symbol>
+                                </svg>
+                                <div id="alert-container" class="alert alert-success d-flex" role="alert">
+                                    <div style="display: flex; justify-content: center; align-items: center;">
+                                        <svg id="success-svg" class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                        <div>
+                                            Profile has been successfully updated!
+                                        </div>
+                                    </div>
+                                    <div class="progress" id="prog" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div id="fadeout" class="progress-bar bg-success"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Alert Parent Div for failed update infos-->
+                            <div id="update-alert-failed" style="display: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                                    <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </symbol>
+                                    <symbol id="info-fill" viewBox="0 0 16 16">
+                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                    </symbol>
+                                </svg>
+                                <div id="alert-container2" class="alert alert-danger d-flex" role="alert">
+                                    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                        <svg id="failure-svg" class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                        <div>
+                                        Email already exists!
+                                        </div>
+                                    </div>
+                                    <div class="progress" id="prog2" role="progressbar" aria-label="danger example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div id="fadeout2" class="progress-bar bg-danger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="log-sec">
+                        <div id="log-sec-container">
+                            <form id="password-form">
+                                <div class="account-info">
+                                    <div class="separator">
+                                        <p>Change Password</p>
+                                        <hr>
+                                    </div>
+                                    <div>
+                                        <label for="formControlInput4" class="form-label">Actual password</label>
+                                        <input name="old_password" type="password" class="form-control" id="formControlInput4" placeholder="Password" required>
+                                    </div>
+                                    <div>
+                                        <label for="formControlInput5" class="form-label">New Password</label>
+                                        <input name="new_password" type="password" class="form-control" id="formControlInput5" placeholder="Password" required>
+                                    </div>
+                                    <div>
+                                        <label for="inputPassword5" class="form-label">Retype New Password</label>
+                                        <input name="new_password" type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Password" required>
+                                        <div id="passwordHelpBlock" class="form-text" style="color: red; margin-top: 15px;display: none;">
+                                        Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                                        </div>
+                                    </div>
+                                    <div class="separator">
+                                        <p>Change Username</p>
+                                        <hr>
+                                    </div>
+                                    <div>
+                                        <label for="formControlInput6" class="form-label">Username</label>
+                                        <input name="new_username" type="text" class="form-control" id="formControlInput6" placeholder="@Username(Optional)">
+                                    </div>
+                                    <div id="last-buttons">
+                                        <div id="save-div">
+                                            <button type="submit" class="btn btn-outline-success save-btn">Save Changes</button>
+                                        </div>
+                                        <div id="delete-div">
+                                            <button type="submit" class="btn btn-outline-danger" id="delete-btn">Delete Account</button>
+                                        </div>
+                                    </div>
+                                    <div id="update-alert2" style="display: none;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                                            <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </symbol>
+                                            <symbol id="info-fill" viewBox="0 0 16 16">
+                                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                            </symbol>
+                                            <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                                                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                            </symbol>
+                                        </svg>
+                                        <div id="alert-container" class="alert alert-success d-flex" role="alert">
+                                            <div style="display: flex; justify-content: center; align-items: center;">
+                                                <svg id="success-svg" class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                                <div>
+                                                    Profile has been successfully updated!
+                                                </div>
+                                            </div>
+                                            <div class="progress" id="prog" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                <div id="fadeout" class="progress-bar bg-success"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="update-alert-failed2" style="display: none;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                                            <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </symbol>
+                                            <symbol id="info-fill" viewBox="0 0 16 16">
+                                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                            </symbol>
+                                            <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                                                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                            </symbol>
+                                        </svg>
+                                        <div id="alert-container2" class="alert alert-danger d-flex" role="alert">
+                                            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                                <svg id="failure-svg" class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                                <div>
+                                                Username already exists!
+                                                </div>
+                                            </div>
+                                            <div class="progress" id="prog2" role="progressbar" aria-label="danger example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                <div id="fadeout2" class="progress-bar bg-danger"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>    
+                    </div>
+                    <div id="general">
+                        <div id="first-sep">
+                            <hr>
+                            <p>General</p>
+                            <hr>
+                        </div>
+                        <div id="switch-mod">
+                            <p><strong>Light-Mode</strong></p>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                            </div>
+                            <p><strong>Dark-Mode</strong></p>
+                        </div>
+                        <div id="language">
+                            <p>Language:</p>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>English</option>
+                                <option value="1">French</option>
+                            </select>
+                        </div>
+                        <p id="dif">difficulty:</p>
+                        <div id="check-box">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">Easy</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">Medium</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                <label class="form-check-label" for="inlineRadio3">Hard</label>
+                            </div>
+                        </div>
+                        <div id="second-sep">
+                            <hr>
+                            <div id="save-div">
+                                <button type="submit" class="btn btn-outline-success save-btn">Save Changes</button>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <!-- friends part -->
+                <div class="col-12 col-md-10" id="friends-part">
+                    <div id="nav-bar">
+                        <button class="btn frd-nav-btn" id="friend-btn">Friends</button>
+                        <button class="btn frd-nav-btn" id="requests-btn">Requests</button>
+                        <button class="btn frd-nav-btn" id="suggestion-btn">Suggestions</button>
+                    </div>
+                    <div id="my-friends">
+                    </div>
+                    <div id="suggestions">
+                    </div>
+                    <div id="requests">
+                    </div>
+                </div>
+                <div class="col-12 col-md-10" id="rank-part">
+                    <h3 style="text-align: center;">LEADERBOARD</h3>
+                    <div id="top-ranked">
+                        <div id="first-three">
+                            <div id="gold">
+                                <div id="first-user-pic">
+                                    <i class="fa-brands fa-pagelines leaf"></i>
+                                    <i class="fa-solid fa-medal"></i>
+                                </div>
+                                <p class="fw-lighter">Score: 9150</p>
+                            </div>
+                            <div id="silver">
+                                <div id="second-user-pic">
+                                    <i class="fa-solid fa-medal"></i>
+                                </div>
+                                <p class="fw-lighter">Score: 6120</p>
+                            </div>
+                            <div id="bronze">
+                                <div id="third-user-pic">
+                                    <i class="fa-solid fa-medal"></i>
+                                </div>
+                                <p class="fw-lighter">Score: 4390</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="the-rest">
+                        <div id="first-col">
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                        </div>
+                        <div id="second-col">
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                            <div class="player-rank">
+                                <h5>4st</h5>
+                                <div class="player-pic"></div>
+                                <h5 class="usernamee">mhassani</h5>
+                                <h4>3780</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="the-rest2">
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+
+
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                        <div class="player-rank">
+                            <h5>4st</h5>
+                            <div class="player-pic"></div>
+                            <h5 class="usernamee">mhassani</h5>
+                            <h4>3780</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="script.js"></script>
+        <script type="module" src="scripts/xo.js"></script>
+        <script type="module" src="scripts/friends.js"></script>
+        <script type="module" src="scripts/rank.js"></script>
+        <script type="module" src="scripts/home.js"></script>
+        <script type="module" src="scripts/profile.js"></script>
+        <script type="module" src="scripts/chat.js"></script>
+        <script type="module" src="scripts/setting.js"></script>
+        <script type="module" src="scripts/register.js"></script>
+        <script type="module" src="scripts/oauth.js"></script>
+        <script type="module" src="scripts/login.js"></script>
+        <script type="module" src="scripts/logout.js"></script>
+        <script type="module" src="scripts/update.js"></script>
+        <script type="module" src="scripts/password.js"></script>
+        <script type="module" src="scripts/socket.js"></script>
+        <script type="module" src="scripts/notification.js"></script>
+        <script type="module" src="scripts/game.js"></script>
+</body>
+</html>
