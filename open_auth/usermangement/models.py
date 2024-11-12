@@ -15,7 +15,6 @@ class           MatchHistoric(models.Model):
     user        = models.ForeignKey(User_info, related_name="user", on_delete=models.CASCADE)
     opponent    = models.ForeignKey(User_info, related_name="opponent", on_delete=models.CASCADE)
     result      = models.CharField(max_length=10)
-    create_at   = models.CharField(max_length=20)
     level       = models.IntegerField(default=0) 
     # models.DateTimeField(auto_now_add = True)
 

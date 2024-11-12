@@ -9,19 +9,19 @@ document.addEventListener("DOMContentLoaded", () =>  {
 	const img = new Image();
 	img.src = "./img2.jpg";
 	
-	let ballPosition = { x: 400, y: 200 }; // Initial position, will be updated by server
+	let ballPosition = { x: 400, y: 200 }; 
 	let ballRadius = 10;
 	let paddle1 = {
-        x: 10,        // Starting x-position of the paddle
-        y: 110,       // Starting y-position of the paddle
-        w: 5,        // Width of the paddle
-        h: 80,        // Height of the paddle
+        x: 10,        
+        y: 110,       
+        w: 5,        
+        h: 80,        
     };
 	let paddle2 = {
-        x: 10,        // Starting x-position of the paddle
-        y: 110,       // Starting y-position of the paddle
-        w: 5,        // Width of the paddle
-        h: 80,        // Height of the paddle
+        x: 10,        
+        y: 110,       
+        w: 5,        
+        h: 80,        
     };
 	/*******************************************************************************************************/
 	//																	My change
@@ -133,8 +133,8 @@ document.addEventListener("DOMContentLoaded", () =>  {
 			const data = JSON.parse(event.data);
 			console.log("Event is ", data.event);
 			if (data.type === "GAME_STATE") {
-				// Extract ball and paddle data
-				const ball = data.ball;
+				const ball = data.bal				// Extract ball and paddle data
+				l;
 				const paddle_serv1 = data.paddle1;
 				const paddle_serv2 = data.paddle2;
 				ballPosition.x = ball.x;
@@ -158,10 +158,8 @@ document.addEventListener("DOMContentLoaded", () =>  {
 			else if (data.event == 'END')
 				Game_over(data.message);
 			else if (data.event == "LEFT")
-				alert("there is no one here")
+				left_game(data.pad_num);
 		};
-		
-
 	}
 	
 
@@ -204,6 +202,17 @@ document.addEventListener("DOMContentLoaded", () =>  {
 				game_over.style.backgroundColor = "#0095DD";
 		}
 	}
+
+	function left_game(left_pad)
+	{
+		if (left_pad == pad_num){
+			console.log("you lose");
+		}
+		else{
+			console.log("you ve Won");
+		}
+	}
+
 	function generateRoomCode() {
 	    return Math.random().toString(36).substring(2, 8).toUpperCase();
 	}

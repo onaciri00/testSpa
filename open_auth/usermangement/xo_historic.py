@@ -8,13 +8,14 @@ from django.contrib.auth import authenticate, login, logout
 @api_view(['POST'])
 def         store_match(request):
     user            = request.user
-    match_serialize =  MatchHistoricSerialzer(data=request.data)
     
     if not user.is_authenticated:
         return JsonResponse({'status' : '400', 'data' : 'user is not authenticated'})
 
     user_db = User_info.objects.get(id=user.id)
 
+    
+    match_serialize =  MatchHistoricSerialzer(data=request.data)
     print ('user ------- >> : ', user, flush=True) 
     
     user_db.level = request.data.get('level')
@@ -22,9 +23,13 @@ def         store_match(request):
     print("The result is ", request.data.get('result'), flush=True)
     print("The opponent is ", request.data.get('opponent'), flush=True)
     user_db.save()
+    print("use is save", flush=True)
+    print ("error ", match_serialize.is_valid())
     if match_serialize.is_valid():
+        print("the match is stored", flush=True)
         match_serialize.save()
         return JsonResponse({'data':match_serialize.data, 'status' : '200'})
+    print("error in saving")
     return JsonResponse({'data':match_serialize.data, 'status' : '400'})
 
 @api_view(['GET'])
@@ -49,7 +54,6 @@ def get_match_history(request):
                 "imageProfile": match.opponent.imageProfile.url
             },
             "result": match.result,
-            "create_at": match.create_at # isoformat solve issue search about it
         }
         response_data.append(match_data)
 

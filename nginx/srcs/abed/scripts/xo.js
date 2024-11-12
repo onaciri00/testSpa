@@ -135,13 +135,14 @@ function postMatch()
     let postdata = 
     {
         id : matchdata.id,
-        use : matchdata.id,
+        user : matchdata.id,
         opponent: matchdata.opponent,
         result: matchdata.x_result,
-        create_at: "",
-        level: matchdata.level
+        level: 0
     }
+    postdata.level= 1;
     console.log("crtf ", crtf);
+    console.log("postdata ",postdata);
     fetch('https://localhost/user/store_match/', {
         method: 'POST',
         headers: {
@@ -442,6 +443,7 @@ function startGame() {
                 } 
             }
             resetGame();
+            
             console.log("this one left");
         }
         function resetGame() {
@@ -450,7 +452,6 @@ function startGame() {
             // });
             is_gameOver = true;
             console.log('this restGame');
-            postMatch();
             showResult.classList.add("active");
             showResult.style.display = "block";
             document.querySelector("#play-again").style.display = "block";
@@ -478,7 +479,9 @@ function startGame() {
                     }
                 }
             }
-            postMatch();
+            if (matchdata.result)
+                postMatch();
+            disconnect();
         }
 
     }
