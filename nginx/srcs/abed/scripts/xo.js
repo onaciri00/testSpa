@@ -479,8 +479,7 @@ function startGame() {
                     }
                 }
             }
-            if (matchdata.result)
-                postMatch();
+            postMatch();
             disconnect();
         }
 
