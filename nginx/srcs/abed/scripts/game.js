@@ -58,7 +58,12 @@ document.addEventListener("DOMContentLoaded", () =>  {
 		fetchRoom();
 	});
 
-
+	window.addEventListener("beforeunload", (event) => {
+		if (socket.readyState === WebSocket.OPEN) {
+			console.log("in closed");
+			socket.send(JSON.stringify({ type: "close" }));
+		}
+	});
 	function createRoom() {
 	    fetch('http://127.0.0.1:8002/api/rooms/', {
 	        method: 'POST',
@@ -124,10 +129,6 @@ document.addEventListener("DOMContentLoaded", () =>  {
 		socket.onopen = function() {
 			console.log('WebSocket connection established.');
 		};
-		socket.close = function(){
-			console.log("in End")
-			
-		}
 		socket.onmessage = function(event) {
 			const data = JSON.parse(event.data);
 			console.log("Event is ", data.event);
@@ -157,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
 			else if (data.event == 'END')
 				Game_over(data.message);
 			else if (data.event == "LEFT")
-				console.log("the messqge is ", data.message);
+				alert("there is no one here")
 		};
 		
 

@@ -172,22 +172,34 @@ class PingPongConsumer(AsyncWebsocketConsumer):
         )
     async def disconnect(self, close_code):
         global pad_num
+        print("in disconect with ", len(connected_players[self.room_group_name]),flush=True)
+
+        if self.room_group_name in connected_players:
+            player_left = None
+            for player in connected_players[self.room_group_name]:
+                if player['channel'] == self.channel_name:
+                    player_left = player['pad_num']  # Retrieve the pad_num of the player who left
+                    connected_players[self.room_group_name].remove(player)  # Remove the player from the list
+                    break
+        # I only one player remains in the room, notify them with the remaining player's pad_num
         if len(connected_players[self.room_group_name]) == 1:
+            remaining_player_pad_num = connected_players[self.room_group_name][0]['pad_num']
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
                     'type': 'send_message',
-                    'message': f'{pad_num}',
+                    'message': f'{player_left}',
                     'event': 'LEFT'
                 }
             )
             await self.close()
+        # If no players remain, delete the room and clean up
         if len(connected_players[self.room_group_name]) == 0:
-            await self.delete_room() 
+            await self.delete_room()
             del connected_players[self.room_group_name]
-        await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
-    async def delete_room(self):
-        await sync_to_async(Room.objects.filter(code=self.room_code).delete)()
+    # Remov the player from the channel group
+            await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
+
         
     async def receive(self, text_data):
         data = json.loads(text_data)
@@ -204,7 +216,8 @@ class PingPongConsumer(AsyncWebsocketConsumer):
         if data.get('type') == 'start':
             asyncio.create_task(self.start_game_loop())
         if (data.get('type') == 'close'):
-            self.disconnect()
+            print("before descon", flush=True)
+            self.disconnect(1000)
 
     async def send_message(self, event):
         await self.send(text_data=json.dumps({
@@ -214,7 +227,7 @@ class PingPongConsumer(AsyncWebsocketConsumer):
         }))
     async def start_game_loop(self):
         global match
-        match = Match(0)  # Assuming `Match` is properly initialized for a two-player game
+        match = Match(0)  
         while True:
             if match.p1.score == 5:
                 await self.channel_layer.group_send(
