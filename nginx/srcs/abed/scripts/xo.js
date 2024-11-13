@@ -348,7 +348,6 @@ function startGame() {
                             matchdata.result = 0;
                             matchdata.level -=0.1; 
                          }                      
-                        // keep curent turn here
                     } 
                     else {
                         if (message === 'X')
@@ -526,12 +525,13 @@ function startGame() {
                         if (message == charChoice)
                             boxes[WinCondation[i][j]].style.backgroundColor = "#00ffa2";
                         else
-                            boxes[WinCondation[i][j]].style.backgroundColor = "#00ffa2";
+                            boxes[WinCondation[i][j]].style.backgroundColor = "#e00d0d";
                         boxes[WinCondation[i][j]].style.color = "#000";
                     }
                 }
             }
             postMatch();
+            disconnect();
 
         }
         
@@ -539,7 +539,6 @@ function startGame() {
     const playAgain = ()=> {
         is_gameOver = false;
         currentTurn = 'X'; 
-        disconnect();
         console.log('playAgain');
         room_is_created = false;
         gameContainer.classList.remove('player-o-turn');

@@ -133,8 +133,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
 			const data = JSON.parse(event.data);
 			console.log("Event is ", data.event);
 			if (data.type === "GAME_STATE") {
-				const ball = data.bal				// Extract ball and paddle data
-				l;
+				const ball = data.ball				// Extract ball and paddle datal;
 				const paddle_serv1 = data.paddle1;
 				const paddle_serv2 = data.paddle2;
 				ballPosition.x = ball.x;
