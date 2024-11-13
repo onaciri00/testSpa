@@ -335,8 +335,9 @@ function startGame() {
                     break;
                 case "END":
                     console.log('game over ', message, 'with ', eventType)
+                    console.log("this char ", charChoice)
                     if (message.includes(charChoice)) {
-                        document.querySelector("#result").innerHTML = currentTurn + " win";
+                        document.querySelector("#result").innerHTML = charChoice + " win";
                         if (message.includes(matchdata.chose))
                         {
                                 matchdata.result = 1;
@@ -350,7 +351,7 @@ function startGame() {
                         // keep curent turn here
                     } 
                     else {
-                        if (currentTurn === 'X')
+                        if (message === 'X')
                             {
                             document.querySelector("#result").innerHTML = 'O' + " loss";
                         }
@@ -359,7 +360,8 @@ function startGame() {
                             document.querySelector("#result").innerHTML = 'X' + " loss";
                         }
                     }
-                    resetGame();
+                    console.log("res game ")
+                    resetGame(message);
                     break;
                 case "wait":
                     console.log("waitt")
@@ -368,11 +370,12 @@ function startGame() {
                 case "DRAW":
                     matchdata.result = 2;
                     console.log("this is draw")
-                    resetGame();
+                    resetGame(message);
                     break;
                 case "OVER":
-                    left_game(message);
                     console.log("this is over")
+                    if (!is_gameOver)
+                        left_game(message);
                     break;
                 case "USERS":
                     if (message == 'Suser')
@@ -488,16 +491,15 @@ function startGame() {
                     matchdata.level+=0.1; 
                 } 
             }
-            resetGame();
-            
+            resetGame(message);
             console.log("this one left");
         }
-        function resetGame() {
+        function resetGame(message) {
             // document.querySelectorAll('.square').forEach((element) => {
             //     element.textContent = '';
             // });
             is_gameOver = true;
-            console.log('this restGame');
+            console.log('t his restGame');
             showResult.classList.add("active");
             showResult.style.display = "block";
             document.querySelector("#play-again").style.display = "block";
@@ -513,27 +515,31 @@ function startGame() {
             ];
             let boxes = document.querySelectorAll('.square');
             for (let i = 0; i < WinCondation.length; i++)
-            {
-                let v0 = boxes[WinCondation[i][0]].innerHTML;
-                let v1 = boxes[WinCondation[i][1]].innerHTML;
-                let v2 = boxes[WinCondation[i][2]].innerHTML;
+                {
+                    let v0 = boxes[WinCondation[i][0]].innerHTML;
+                    let v1 = boxes[WinCondation[i][1]].innerHTML;
+                    let v2 = boxes[WinCondation[i][2]].innerHTML;
+                    console.log("in win condatio with ", v0, v1, v2);
                 if (v0 != "" && v0 === v1 && v0 === v2){
                     for (let j = 0; j < 3; j++)
                     {
-                        boxes[WinCondation[i][j]].style.backgroundColor = "#00ffa2";
+                        if (message == charChoice)
+                            boxes[WinCondation[i][j]].style.backgroundColor = "#00ffa2";
+                        else
+                            boxes[WinCondation[i][j]].style.backgroundColor = "#00ffa2";
                         boxes[WinCondation[i][j]].style.color = "#000";
                     }
                 }
             }
             postMatch();
-            disconnect();
-        }
 
+        }
+        
     }
     const playAgain = ()=> {
         is_gameOver = false;
         currentTurn = 'X'; 
-
+        disconnect();
         console.log('playAgain');
         room_is_created = false;
         gameContainer.classList.remove('player-o-turn');
@@ -554,6 +560,7 @@ function startGame() {
             // element.classList.remove('filled');
             element.textContent = '';
             element.style.removeProperty("background-color");
+            element.style.color = "white";
         });
     }
     document.querySelector("#play-again").addEventListener("click", playAgain);
@@ -578,7 +585,6 @@ function startGame() {
 
     const closeGame = () => {
         freeze.classList.remove("unclick");
-        disconnect()
         playAgain();
         app.style.display = "none";
         document.querySelector("#design").style.filter = "blur(0px)";

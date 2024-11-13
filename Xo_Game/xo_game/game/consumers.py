@@ -67,8 +67,8 @@ class TicTacToeConsumer(AsyncWebsocketConsumer):
                 }
             )
             await self.close()
-            user1 = None
-            user2 = None
+            user1 = 0
+            user2 = 0
         if len(connected_players[self.room_group_name]) == 0:
             await self.delete_room() 
             del connected_players[self.room_group_name]
@@ -101,22 +101,31 @@ class TicTacToeConsumer(AsyncWebsocketConsumer):
             index = message['index']
             player = message['player']
             board = game_states[self.room_group_name]['board']
+            if message['player'] == current_turn:
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'send_message',
+                        'message': message,
+                        'event': 'MOVE'
+                    }
+                )
             if board[index] == '' and player == current_turn:
                 board[index] = player
                 print('cuurent is ', current_turn)
             if self.check_winner(board):
                 is_game_over = True
-                turn_tracker[self.room_group_name] = 'X'
                 for i in range(len(board)):
                     board[i] = ''
                 await self.channel_layer.group_send(
                 self.room_group_name,
                     {
                         'type': 'send_message',
-                        'message': f'{player} wins!',
+                        'message': f'{player}',
                         'event': 'END'
                     }
                 )
+                turn_tracker[self.room_group_name] = 'X'
             elif '' not in board and len(connected_players[self.room_group_name]) == 2:
                 print("in draw")
                 turn_tracker[self.room_group_name] = 'X'
@@ -129,16 +138,6 @@ class TicTacToeConsumer(AsyncWebsocketConsumer):
                         'type': 'send_message',
                         'message': 'It\'s a draw!',
                         'event': 'DRAW'
-                    }
-                )
-            
-            if message['player'] == current_turn:
-                await self.channel_layer.group_send(
-                    self.room_group_name,
-                    {
-                        'type': 'send_message',
-                        'message': message,
-                        'event': 'MOVE'
                     }
                 )
             if turn_tracker[self.room_group_name] == 'X' and is_game_over == False:
