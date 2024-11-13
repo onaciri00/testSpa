@@ -6,10 +6,9 @@ from .models import Room
 connected_players = {}
 turn_tracker = {}
 game_states = {}
-global user1
-global user2
 
-user1, user2 = None, None
+user1 = 0
+user2 =  0
 class TicTacToeConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         print("in game", flush=True)
@@ -48,6 +47,8 @@ class TicTacToeConsumer(AsyncWebsocketConsumer):
                 {'type': 'send_message', 'message': 'Waiting for the second player...', 'event': 'wait'}
             )
     async def disconnect(self, close_code):
+        global user2
+        global user1
         if self.room_group_name in connected_players:
             if self.channel_name in connected_players[self.room_group_name]:
                 # connected_players[self.room_group_name].remove(self.channel_name)
@@ -66,6 +67,8 @@ class TicTacToeConsumer(AsyncWebsocketConsumer):
                 }
             )
             await self.close()
+            user1 = None
+            user2 = None
         if len(connected_players[self.room_group_name]) == 0:
             await self.delete_room() 
             del connected_players[self.room_group_name]

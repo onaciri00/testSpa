@@ -172,6 +172,13 @@ class PingPongConsumer(AsyncWebsocketConsumer):
         )
     async def disconnect(self, close_code):
         global pad_num
+        #if self.room_group_name in connected_players:
+         #   player_left = None
+          #  for player in connected_players[self.room_group_name]:
+           #     if player['channel'] == self.channel_name:
+            #        player_left = player['pad_num']
+             #       connected_players[self.room_group_name].remove(player)
+              #      break
         print("in disconect with ", len(connected_players[self.room_group_name]),flush=True)
 
         if self.room_group_name in connected_players:

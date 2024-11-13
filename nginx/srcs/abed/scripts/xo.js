@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () =>  {
         level:0,
         user:0,
         opponent:0,
-        create_at:"",
         chose:"",
         result:0,
         x_resuSuserlt:"",
@@ -152,25 +151,72 @@ function postMatch()
         body: JSON.stringify(postdata)
     })
 }
+async function fetchRoom() {
+    try {
+        const response = await fetch('http://127.0.0.1:8001/api/rooms/');
+        
+        if (!response.ok) {
+            console.log("No available rooms. Creating a new room...");
+            return await createRoom();
+        }
+        
+        const room = await response.json();
+        console.log("Fetched room:", room);
 
+        if (room.players < 3) {
+            console.log(`Joining room ${room.code} with ${room.players} players.`);
+            roomCode = room.code;
+            connectWebSocket();
+        } else {
+            console.log("Room is full, creating a new room...");
+            await createRoom();
+        }
+    } catch (error) {
+        console.error("Error fetching or creating room:", error);
+    }
+}
+
+async function createRoom() {
+    try {
+        const response = await fetch('http://127.0.0.1:8001/api/rooms/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ code: generateRoomCode() })
+        });
+        
+        const data = await response.json();
+        roomCode = data.code;
+        console.log("Created new room with code:", roomCode);
+        connectWebSocket();
+        
+        return data;
+    } catch (error) {
+        console.error("Error creating room:", error);
+    }
+}
+/*
 function fetchRoom() {
     fetch('http://127.0.0.1:8001/api/rooms/')
     .then(response => {
+        console.log("fetch room ", response.ok)
         if (!response.ok) {
-            console.log("No available rooms, creating a new room...");
+            console.log("there is no room")
             createRoom();
+            console.log("room was created")
+
         }
         return response.json();
     })
         .then(data => {
-            if (data && !room_is_created) {
+            if (data) {
                 const room = data;
                 console.log("the room is ", room.code, " and num of player ", room.players);
                 if (room.players < 2) {
                     console.log("********************************inside room num ", room.code, " and num of player ", room.players);
                     roomCode = room.code;  
                     console.log("Joining existing room with code: ", roomCode); 
-                    wait_page();
                     connectWebSocket();
                     return ;
                 }
@@ -208,7 +254,7 @@ function fetchRoom() {
         console.error("Error creating room:", error);
     });
 }
-
+*/
 function disconnect() {
     socket.close();
 }

@@ -10,7 +10,6 @@ class RoomListCreateAPIView(APIView):
     def get(self, request):
         rooms = Room.objects.filter(players__lt=2)
         print("it is empty", rooms.exists())
-        print("room size is ", rooms.__sizeof__())
         if rooms.exists():
             room = rooms.first()
             room.players += 1
